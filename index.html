@@ -1133,5 +1133,14 @@
     init();
 })();
 </script>
+    <script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/liste-courses/sw.js') // Remplacez aussi ici
+            .then(reg => console.log('Service Worker enregistré', reg))
+            .catch(err => console.log('Erreur Service Worker', err));
+    });
+}
+</script>
 </body>
 </html>
