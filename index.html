@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>🛒 Courses Tunisie</title>
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Courses%20Tunisie%22%2C%22short_name%22%3A%22Courses%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22theme_color%22%3A%22%232E7D32%22%7D">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234CAF50'/%3E%3Cstop offset='100%25' style='stop-color:%232E7D32'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='70' font-size='45' text-anchor='middle' fill='white'%3E🛒%3C/text%3E%3C/svg%3E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        :root {
+            --primary: #2E7D32;
+            --primary-light: #4CAF50;
+            --primary-lighter: #A5D6A7;
+            --primary-bg: #E8F5E9;
+            --accent: #FF8F00;
+            --accent-light: #FFE0B2;
+            --whatsapp: #25D366;
+            --whatsapp-dark: #1DA851;
+            --danger: #E53935;
+            --danger-light: #FFEBEE;
+            --secondary: #1E88E5;
+            --bg: #F0F4F0;
+            --surface: #FFFFFF;
+            --surface-alt: #F8FAF8;
+            --text: #1B2E1B;
+            --text-secondary: #5A6B5A;
+            --text-muted: #8A9B8A;
+            --border: #DDE8DD;
+            --border-light: #EEF4EE;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+            --shadow: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.05);
+            --shadow-xl: 0 16px 40px rgba(0,0,0,0.10), 0 8px 16px rgba(0,0,0,0.06);
+            --radius-sm: 12px;
+            --radius: 18px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 50px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #E8F5E9 0%, #F0F4F0 30%, #F5F7F5 100%);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            min-height: 100dvh;
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .app {
+            max-width: 500px;
+            width: 100%;
+            background: var(--surface);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            box-shadow: var(--shadow-xl);
+            padding: 24px 18px 36px;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent), var(--primary-light));
+            border-radius: 4px 4px 0 0;
+        }
+
+        /* Header */
+        .app > h1 {
+            margin: 8px 0 2px;
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .app > h1::after {
+            content: '🇹🇳';
+            font-size: 1.2rem;
+            margin-left: auto;
+            opacity: 0.6;
+        }
+
+        .subtitle {
+            margin: 0 0 22px;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+
+        /* Configuration Card */
+        .config-card {
+            background: linear-gradient(135deg, #FAFDFA 0%, #F5FAF5 100%);
+            padding: 20px 18px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 24px;
+            border: 1.5px solid var(--border);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .config-card::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(76,175,80,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .config-row {
+            display: flex;
+            gap: 14px;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .config-field {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .config-label {
+            font-weight: 700;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .config-label::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary-light);
+        }
+
+        .config-field:last-child .config-label::before {
+            background: var(--whatsapp);
+        }
+
+        .config-input {
+            width: 100%;
+            padding: 13px 16px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            background: var(--surface);
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            color: var(--text);
+        }
+
+        .config-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(76,175,80,0.1), var(--shadow);
+        }
+
+        .config-input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        /* Boutons */
+        .btn {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            color: white;
+            border: none;
+            padding: 13px 22px;
+            border-radius: var(--radius-full);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            margin: 5px 0;
+            box-shadow: 0 4px 14px rgba(46,125,50,0.25);
+            letter-spacing: 0.2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+            box-shadow: 0 2px 8px rgba(46,125,50,0.3);
+        }
+
+        .btn-small {
+            width: auto;
+            padding: 11px 20px;
+            font-size: 0.88rem;
+            border-radius: var(--radius-full);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #42A5F5 0%, var(--secondary) 100%);
+            box-shadow: 0 4px 14px rgba(30,136,229,0.25);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #4AE072 0%, var(--whatsapp-dark) 100%);
+            box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #EF5350 0%, var(--danger) 100%);
+            box-shadow: 0 4px 14px rgba(229,57,53,0.25);
+        }
+
+        /* Tabs */
+        .tabs-container {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 22px;
+            background: var(--surface-alt);
+            padding: 5px;
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 11px 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            cursor: pointer;
+            flex: 1;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            background: var(--surface);
+            color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeSlideIn 0.35s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Catalogue header */
+        .catalog-header {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .search-wrapper {
+            display: flex;
+            gap: 8px;
+        }
+
+        .search-wrapper input,
+        .category-select {
+            padding: 13px 18px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-full);
+            font-size: 0.92rem;
+            background: var(--surface);
+            flex: 1;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            color: var(--text);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .category-select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235A6B5A' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 36px;
+        }
+
+        .search-wrapper input:focus,
+        .category-select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(76,175,80,0.08), var(--shadow);
+        }
+
+        .search-wrapper input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        /* Grille de produits */
+        .product-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 460px;
+            overflow-y: auto;
+            padding-right: 4px;
+            margin-bottom: 8px;
+            scroll-behavior: smooth;
+        }
+
+        .product-grid::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .product-grid::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .product-grid::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 10px;
+        }
+
+        .product-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border: 1.5px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .product-card:active {
+            transform: scale(0.985);
+            box-shadow: var(--shadow);
+            border-color: var(--primary-lighter);
+        }
+
+        .product-img {
+            font-size: 36px;
+            width: 52px;
+            height: 52px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #F5FAF5 0%, #E8F5E9 100%);
+            border-radius: var(--radius-sm);
+            flex-shrink: 0;
+        }
+
+        .product-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .product-name-fr {
+            font-weight: 700;
+            color: var(--text);
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+
+        .product-name-ar {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-top: 3px;
+            font-weight: 500;
+        }
+
+        .product-brand {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .product-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .qty-input {
+            width: 55px;
+            padding: 9px 4px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: var(--surface-alt);
+            transition: var(--transition);
+            color: var(--text);
+        }
+
+        .qty-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(76,175,80,0.1);
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%) !important;
+            color: white !important;
+            border: none !important;
+            width: 42px !important;
+            height: 42px !important;
+            border-radius: 50% !important;
+            font-size: 1.3rem !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-shadow: 0 4px 12px rgba(46,125,50,0.3) !important;
+            transition: var(--transition) !important;
+            padding: 0 !important;
+            min-width: 42px !important;
+        }
+
+        .add-btn:active {
+            transform: scale(0.9) !important;
+            box-shadow: 0 2px 6px rgba(46,125,50,0.4) !important;
+        }
+
+        /* Panier */
+        .cart-items {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 16px;
+        }
+
+        .cart-item {
+            background: var(--surface-alt);
+            padding: 16px 18px;
+            margin-bottom: 10px;
+            border-radius: var(--radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1.5px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .cart-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .cart-item-name-fr {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .cart-item-name-ar {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 3px;
+            font-weight: 500;
+        }
+
+        .cart-item-details {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .cart-summary {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            padding: 18px 20px;
+            border-radius: var(--radius);
+            margin: 16px 0;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-sm);
+            border: 1.5px solid var(--primary-lighter);
+        }
+
+        .delete-item {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 50%;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .delete-item:active {
+            background: var(--danger-light);
+            color: var(--danger);
+        }
+
+        /* Liste simple */
+        .simple-add {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .simple-add input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-full);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            background: var(--surface);
+            color: var(--text);
+        }
+
+        .simple-add input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(76,175,80,0.08);
+        }
+
+        .simple-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .simple-list li {
+            background: var(--surface-alt);
+            padding: 16px 20px;
+            margin-bottom: 8px;
+            border-radius: var(--radius-full);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1.5px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .simple-list li button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .simple-list li button:active {
+            background: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .phones-status {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Animation des éléments vides */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Améliorations globales */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <h1>🛒 Mes courses</h1>
+    <p class="subtitle">Catalogue 🇹🇳 bilingue (français / arabe tunisien)</p>
+
+    <!-- Configuration WhatsApp (double) -->
+    <div class="config-card">
+        <div class="config-row">
+            <div class="config-field">
+                <label class="config-label" for="senderPhone">📱 Votre n° (Émetteur)</label>
+                <input type="tel" id="senderPhone" class="config-input" placeholder="Ex: 33612345678" inputmode="numeric">
+            </div>
+            <div class="config-field">
+                <label class="config-label" for="receiverPhone">📲 N° du destinataire (Récepteur)</label>
+                <input type="tel" id="receiverPhone" class="config-input" placeholder="Ex: 33698765432" inputmode="numeric">
+            </div>
+        </div>
+        <button id="savePhonesBtn" class="btn btn-small" style="margin-top:14px;">💾 Sauvegarder les numéros</button>
+        <p id="phonesStatus" class="phones-status" style="color:#2E7D32;"></p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-container">
+        <button class="tab-btn active" data-tab="catalog">📋 Catalogue</button>
+        <button class="tab-btn" data-tab="cart">🛒 Panier (<span id="cartCount">0</span>)</button>
+        <button class="tab-btn" data-tab="simple">📝 Rapide</button>
+    </div>
+
+    <!-- Onglet Catalogue -->
+    <div id="catalog" class="tab-content active">
+        <div class="catalog-header">
+            <select id="categorySelect" class="category-select"><option value="">Toutes catégories</option></select>
+            <div class="search-wrapper">
+                <input type="text" id="searchProduct" placeholder="🔍 Rechercher (français ou arabe)...">
+                <button id="searchBtn" class="btn btn-small btn-secondary" style="width:auto;">OK</button>
+            </div>
+        </div>
+        <div id="productList" class="product-grid"></div>
+        <p style="color:#8A9B8A; font-size:0.7rem; margin-top:12px; text-align:center;">Catalogue bilingue – produits tunisiens courants</p>
+    </div>
+
+    <!-- Onglet Panier -->
+    <div id="cart" class="tab-content">
+        <h3 style="margin-bottom:16px; font-weight:800; color:#1B2E1B;">🛍️ Votre panier</h3>
+        <ul id="cartItemsList" class="cart-items"></ul>
+        <div id="cartSummary" class="cart-summary"></div>
+        <div style="display:flex; gap:12px;">
+            <button id="clearCartBtn" class="btn btn-small btn-danger" style="flex:1;">🗑️ Vider</button>
+            <button id="sendCartWhatsAppBtn" class="btn btn-small btn-whatsapp" style="flex:2;">📲 Envoyer le panier</button>
+        </div>
+    </div>
+
+    <!-- Onglet Liste rapide -->
+    <div id="simple" class="tab-content">
+        <div class="simple-add">
+            <input type="text" id="simpleItemInput" placeholder="ex: Lait, Pain...">
+            <button id="simpleAddBtn" class="btn btn-small" style="width:auto;">Ajouter</button>
+        </div>
+        <ul id="simpleShoppingList" class="simple-list"></ul>
+        <button id="sendSimpleWhatsAppBtn" class="btn btn-whatsapp" style="margin-top:16px;">📲 Envoyer liste</button>
+    </div>
+</div>
+
+<script>
+(function(){
+    "use strict";
+
+    // ---------- BASE DE DONNÉES BILINGUE ----------
+    const PRODUCT_CATALOG = [
+        { id: "1", name_fr: "Tomates", name_ar: "طماطم", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🍅" },
+        { id: "2", name_fr: "Pommes de terre", name_ar: "بطاطا", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🥔" },
+        { id: "3", name_fr: "Oignons", name_ar: "بصل", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🧅" },
+        { id: "4", name_fr: "Ail", name_ar: "ثوم", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🧄" },
+        { id: "5", name_fr: "Poivrons", name_ar: "فلفل", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🫑" },
+        { id: "6", name_fr: "Piment frais", name_ar: "فلافل", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🌶️" },
+        { id: "7", name_fr: "Citrons", name_ar: "ليمون", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🍋" },
+        { id: "8", name_fr: "Oranges", name_ar: "برتقال", brand: "Maltaise", category: "Fruits & Légumes", emoji: "🍊" },
+        { id: "9", name_fr: "Dattes", name_ar: "تمر", brand: "Deglet Nour", category: "Fruits & Légumes", emoji: "🌴" },
+        { id: "10", name_fr: "Pommes", name_ar: "تفاح", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🍎" },
+        { id: "11", name_fr: "Bananes", name_ar: "موز", brand: "Importées", category: "Fruits & Légumes", emoji: "🍌" },
+        { id: "12", name_fr: "Fraises", name_ar: "فراولة", brand: "Cap Bon", category: "Fruits & Légumes", emoji: "🍓" },
+        { id: "13", name_fr: "Figues", name_ar: "تين", brand: "Djebba", category: "Fruits & Légumes", emoji: "🟢" },
+        { id: "14", name_fr: "Grenades", name_ar: "رمان", brand: "Testour", category: "Fruits & Légumes", emoji: "🔴" },
+        { id: "15", name_fr: "Raisins", name_ar: "عنب", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🍇" },
+        { id: "16", name_fr: "Pêches", name_ar: "خوخ", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🍑" },
+        { id: "17", name_fr: "Abricots", name_ar: "مشمش", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🟠" },
+        { id: "18", name_fr: "Melon", name_ar: "بطيخ", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🍈" },
+        { id: "19", name_fr: "Pastèque", name_ar: "دلاع", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🍉" },
+        { id: "20", name_fr: "Carottes", name_ar: "جزر", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🥕" },
+        { id: "21", name_fr: "Courgettes", name_ar: "قرع", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🥒" },
+        { id: "22", name_fr: "Aubergines", name_ar: "بادنجان", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🍆" },
+        { id: "23", name_fr: "Salade", name_ar: "سلاطة", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🥬" },
+        { id: "24", name_fr: "Chou", name_ar: "ملفوف", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🥬" },
+        { id: "25", name_fr: "Épinards", name_ar: "سبناخ", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🍃" },
+        { id: "26", name_fr: "Haricots verts", name_ar: "لوبيا خضرا", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🫛" },
+        { id: "27", name_fr: "Petits pois", name_ar: "جلبانة", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🟢" },
+        { id: "28", name_fr: "Champignons", name_ar: "فطر", brand: "Origine Tunisie", category: "Fruits & Légumes", emoji: "🍄" },
+        // Épicerie Salée
+        { id: "29", name_fr: "Couscous fin", name_ar: "كسكسي ناعم", brand: "Dari", category: "Épicerie Salée", emoji: "🍚" },
+        { id: "30", name_fr: "Couscous moyen", name_ar: "كسكسي وسط", brand: "Dari", category: "Épicerie Salée", emoji: "🍚" },
+        { id: "31", name_fr: "Couscous gros", name_ar: "كسكسي خشن", brand: "Dari", category: "Épicerie Salée", emoji: "🍚" },
+        { id: "32", name_fr: "Pâtes spaghetti", name_ar: "مقرونة", brand: "Dari", category: "Épicerie Salée", emoji: "🍝" },
+        { id: "33", name_fr: "Pâtes macaroni", name_ar: "مقرونة مكروني", brand: "Dari", category: "Épicerie Salée", emoji: "🍝" },
+        { id: "34", name_fr: "Pâtes nouilles", name_ar: "شعرية", brand: "Dari", category: "Épicerie Salée", emoji: "🍜" },
+        { id: "35", name_fr: "Riz long grain", name_ar: "روز طويل", brand: "Dari", category: "Épicerie Salée", emoji: "🍚" },
+        { id: "36", name_fr: "Riz rond", name_ar: "روز مدور", brand: "Vital", category: "Épicerie Salée", emoji: "🍚" },
+        { id: "37", name_fr: "Lentilles", name_ar: "عدس", brand: "Vrac", category: "Épicerie Salée", emoji: "🫘" },
+        { id: "38", name_fr: "Pois chiches", name_ar: "حمص", brand: "Vrac", category: "Épicerie Salée", emoji: "🫘" },
+        { id: "39", name_fr: "Haricots blancs", name_ar: "لوبيا بيضا", brand: "Vrac", category: "Épicerie Salée", emoji: "🫘" },
+        { id: "40", name_fr: "Thon à l'huile", name_ar: "تن بالزيت", brand: "Sidi Daoud", category: "Conserves", emoji: "🐟" },
+        { id: "41", name_fr: "Thon à l'huile", name_ar: "تن بالزيت", brand: "Calvo", category: "Conserves", emoji: "🐟" },
+        { id: "42", name_fr: "Sardines à l'huile", name_ar: "سردينة بالزيت", brand: "Sidi Daoud", category: "Conserves", emoji: "🐟" },
+        { id: "43", name_fr: "Harissa", name_ar: "هريسة", brand: "Sicam", category: "Conserves", emoji: "🌶️" },
+        { id: "44", name_fr: "Harissa", name_ar: "هريسة", brand: "Cap Bon", category: "Conserves", emoji: "🌶️" },
+        { id: "45", name_fr: "Concentré de tomate", name_ar: "طماطم مركزة", brand: "Sicam", category: "Conserves", emoji: "🥫" },
+        { id: "46", name_fr: "Sauce tomate", name_ar: "صلصة طماطم", brand: "Sicam", category: "Conserves", emoji: "🥫" },
+        { id: "47", name_fr: "Huile d'olive", name_ar: "زيت زيتون", brand: "RusPina", category: "Épicerie Salée", emoji: "🫒" },
+        { id: "48", name_fr: "Huile d'olive", name_ar: "زيت زيتون", brand: "Terra Delyssa", category: "Épicerie Salée", emoji: "🫒" },
+        { id: "49", name_fr: "Huile végétale", name_ar: "زيت نباتي", brand: "Jadida", category: "Épicerie Salée", emoji: "🌻" },
+        { id: "50", name_fr: "Sel fin", name_ar: "ملح رقيق", brand: "Salsabil", category: "Épicerie Salée", emoji: "🧂" },
+        { id: "51", name_fr: "Poivre noir", name_ar: "فلفل أسود", brand: "Ducros", category: "Épicerie Salée", emoji: "⚫" },
+        { id: "52", name_fr: "Cumin moulu", name_ar: "كمون مطحون", brand: "Vrac", category: "Épicerie Salée", emoji: "🟤" },
+        { id: "53", name_fr: "Curcuma", name_ar: "كركم", brand: "Vrac", category: "Épicerie Salée", emoji: "🟡" },
+        { id: "54", name_fr: "Coriandre moulue", name_ar: "كسبرة مطحونة", brand: "Vrac", category: "Épicerie Salée", emoji: "🟢" },
+        { id: "55", name_fr: "Ras el hanout", name_ar: "راس الحانوت", brand: "Vrac", category: "Épicerie Salée", emoji: "🌿" },
+        { id: "56", name_fr: "Tabil", name_ar: "تابل", brand: "Vrac", category: "Épicerie Salée", emoji: "🌿" },
+        { id: "57", name_fr: "Vinaigre", name_ar: "خل", brand: "BS", category: "Épicerie Salée", emoji: "🍾" },
+        { id: "58", name_fr: "Sauce harissa", name_ar: "صلصة هريسة", brand: "Cap Bon", category: "Sauces & Condiments", emoji: "🌶️" },
+        { id: "59", name_fr: "Ketchup", name_ar: "كاتشب", brand: "Sicam", category: "Sauces & Condiments", emoji: "🍅" },
+        { id: "60", name_fr: "Mayonnaise", name_ar: "مايونيز", brand: "Sicam", category: "Sauces & Condiments", emoji: "🥚" },
+        { id: "61", name_fr: "Moutarde", name_ar: "موطارد", brand: "Amora", category: "Sauces & Condiments", emoji: "🟡" },
+        { id: "62", name_fr: "Olives vertes", name_ar: "زيتون أخضر", brand: "Vrac", category: "Épicerie Salée", emoji: "🫒" },
+        { id: "63", name_fr: "Olives noires", name_ar: "زيتون أسود", brand: "Vrac", category: "Épicerie Salée", emoji: "🫒" },
+        { id: "64", name_fr: "Câpres", name_ar: "كبر", brand: "Vrac", category: "Épicerie Salée", emoji: "🟢" },
+        // Épicerie Sucrée
+        { id: "65", name_fr: "Sucre en poudre", name_ar: "سكر مطحون", brand: "BST", category: "Épicerie Sucrée", emoji: "🧂" },
+        { id: "66", name_fr: "Sucre cristallisé", name_ar: "سكر بلوري", brand: "BST", category: "Épicerie Sucrée", emoji: "🧂" },
+        { id: "67", name_fr: "Farine de blé", name_ar: "فرينة", brand: "BS", category: "Épicerie Salée", emoji: "🌾" },
+        { id: "68", name_fr: "Semoule fine", name_ar: "سميد", brand: "Dari", category: "Épicerie Salée", emoji: "🌾" },
+        { id: "69", name_fr: "Levure boulangère", name_ar: "خميرة خبز", brand: "BS", category: "Épicerie Salée", emoji: "🍞" },
+        { id: "70", name_fr: "Levure chimique", name_ar: "خميرة حلويات", brand: "Dr. Oetker", category: "Épicerie Salée", emoji: "🍞" },
+        // Boissons
+        { id: "71", name_fr: "Café moulu", name_ar: "قهوة مطحونة", brand: "Ben Yedder", category: "Boissons", emoji: "☕" },
+        { id: "72", name_fr: "Café moulu", name_ar: "قهوة مطحونة", brand: "Club", category: "Boissons", emoji: "☕" },
+        { id: "73", name_fr: "Café moulu", name_ar: "قهوة مطحونة", brand: "Carte Noire", category: "Boissons", emoji: "☕" },
+        { id: "74", name_fr: "Café soluble", name_ar: "قهوة سريعة", brand: "Nescafé", category: "Boissons", emoji: "☕" },
+        { id: "75", name_fr: "Thé vert", name_ar: "شاي أخضر", brand: "Sultan", category: "Boissons", emoji: "🫖" },
+        { id: "76", name_fr: "Thé noir", name_ar: "شاي أحمر", brand: "Lipton", category: "Boissons", emoji: "🫖" },
+        { id: "77", name_fr: "Tisane verveine", name_ar: "تيزان", brand: "Biolandes", category: "Boissons", emoji: "🌿" },
+        { id: "78", name_fr: "Chocolat en poudre", name_ar: "شوكولاطة", brand: "Benco", category: "Boissons", emoji: "🍫" },
+        { id: "79", name_fr: "Chocolat en poudre", name_ar: "شوكولاطة", brand: "Nesquik", category: "Boissons", emoji: "🍫" },
+        // Biscuits
+        { id: "80", name_fr: "Biscuits fourrés", name_ar: "بسكويت محشي", brand: "P'tit Koh", category: "Biscuits & Gâteaux", emoji: "🍪" },
+        { id: "81", name_fr: "Biscuits petit beurre", name_ar: "بسكويت", brand: "BS", category: "Biscuits & Gâteaux", emoji: "🍪" },
+        { id: "82", name_fr: "Biscuits sablés", name_ar: "غريبة", brand: "Saida", category: "Biscuits & Gâteaux", emoji: "🍪" },
+        { id: "83", name_fr: "Gaufrettes", name_ar: "وافل", brand: "Saida", category: "Biscuits & Gâteaux", emoji: "🧇" },
+        { id: "84", name_fr: "Gâteaux secs", name_ar: "كعك", brand: "Saida", category: "Biscuits & Gâteaux", emoji: "🍰" },
+        { id: "85", name_fr: "Céréales petit-déjeuner", name_ar: "سيريال", brand: "Kellogg's", category: "Épicerie Sucrée", emoji: "🥣" },
+        { id: "86", name_fr: "Miel", name_ar: "عسل", brand: "Origine Tunisie", category: "Épicerie Sucrée", emoji: "🍯" },
+        { id: "87", name_fr: "Confiture de fraises", name_ar: "مربى فراولة", brand: "Saida", category: "Épicerie Sucrée", emoji: "🍓" },
+        { id: "88", name_fr: "Confiture d'abricots", name_ar: "مربى مشمش", brand: "Saida", category: "Épicerie Sucrée", emoji: "🍊" },
+        { id: "89", name_fr: "Pâte à tartiner", name_ar: "شوكولاطة للدهن", brand: "Nutella", category: "Épicerie Sucrée", emoji: "🍫" },
+        { id: "90", name_fr: "Pâte à tartiner", name_ar: "شوكولاطة للدهن", brand: "Choco Bsissa", category: "Épicerie Sucrée", emoji: "🍫" },
+        { id: "91", name_fr: "Sirop de grenadine", name_ar: "شراب الرمان", brand: "BS", category: "Boissons", emoji: "🥤" },
+        { id: "92", name_fr: "Sirop de menthe", name_ar: "شراب النعناع", brand: "BS", category: "Boissons", emoji: "🌿" },
+        // Boissons
+        { id: "93", name_fr: "Eau minérale", name_ar: "ماء معدني", brand: "Safia", category: "Boissons", emoji: "💧" },
+        { id: "94", name_fr: "Eau minérale", name_ar: "ماء معدني", brand: "Cristaline", category: "Boissons", emoji: "💧" },
+        { id: "95", name_fr: "Eau minérale", name_ar: "ماء معدني", brand: "Marwa", category: "Boissons", emoji: "💧" },
+        { id: "96", name_fr: "Eau gazeuse", name_ar: "ماء غازي", brand: "Garci", category: "Boissons", emoji: "🫧" },
+        { id: "97", name_fr: "Jus d'orange", name_ar: "عصير برتقال", brand: "Jus de Fruits", category: "Boissons", emoji: "🧃" },
+        { id: "98", name_fr: "Jus de pomme", name_ar: "عصير تفاح", brand: "Jus de Fruits", category: "Boissons", emoji: "🧃" },
+        { id: "99", name_fr: "Jus multifruits", name_ar: "عصير مشكل", brand: "Jus de Fruits", category: "Boissons", emoji: "🧃" },
+        { id: "100", name_fr: "Sodas", name_ar: "غازوز", brand: "Boga", category: "Boissons", emoji: "🥤" },
+        { id: "101", name_fr: "Sodas", name_ar: "غازوز", brand: "Coca-Cola", category: "Boissons", emoji: "🥤" },
+        // Produits laitiers
+        { id: "102", name_fr: "Lait demi-écrémé 1L", name_ar: "حليب نصف دسم", brand: "Vitalait", category: "Produits Laitiers", emoji: "🥛" },
+        { id: "103", name_fr: "Lait entier 1L", name_ar: "حليب كامل", brand: "Vitalait", category: "Produits Laitiers", emoji: "🥛" },
+        { id: "104", name_fr: "Lait demi-écrémé 1L", name_ar: "حليب نصف دسم", brand: "Délice", category: "Produits Laitiers", emoji: "🥛" },
+        { id: "105", name_fr: "Lait entier 1L", name_ar: "حليب كامل", brand: "Délice", category: "Produits Laitiers", emoji: "🥛" },
+        { id: "106", name_fr: "Lait fermenté (Lben)", name_ar: "لبن", brand: "Vitalait", category: "Produits Laitiers", emoji: "🥛" },
+        { id: "107", name_fr: "Lait fermenté (Lben)", name_ar: "لبن", brand: "Délice", category: "Produits Laitiers", emoji: "🥛" },
+        { id: "108", name_fr: "Yaourt nature", name_ar: "ياغورت طبيعي", brand: "Vitalait", category: "Produits Laitiers", emoji: "🍦" },
+        { id: "109", name_fr: "Yaourt nature", name_ar: "ياغورت طبيعي", brand: "Délice", category: "Produits Laitiers", emoji: "🍦" },
+        { id: "110", name_fr: "Yaourt aromatisé", name_ar: "ياغورت فواكه", brand: "Vitalait", category: "Produits Laitiers", emoji: "🍓" },
+        { id: "111", name_fr: "Yaourt aromatisé", name_ar: "ياغورت فواكه", brand: "Délice", category: "Produits Laitiers", emoji: "🍑" },
+        { id: "112", name_fr: "Yaourt brassé", name_ar: "ياغورت مخفوق", brand: "Danone", category: "Produits Laitiers", emoji: "🍦" },
+        { id: "113", name_fr: "Fromage frais", name_ar: "جبن طري", brand: "St Môret", category: "Produits Laitiers", emoji: "🧀" },
+        { id: "114", name_fr: "Fromage frais", name_ar: "جبن طري", brand: "Cœur de Lait", category: "Produits Laitiers", emoji: "🧀" },
+        { id: "115", name_fr: "Fromage blanc", name_ar: "جبن أبيض", brand: "Vitalait", category: "Produits Laitiers", emoji: "🧀" },
+        { id: "116", name_fr: "Emmental râpé", name_ar: "إمنتال مبشور", brand: "Président", category: "Produits Laitiers", emoji: "🧀" },
+        { id: "117", name_fr: "Fromage en tranches", name_ar: "جبن شرائح", brand: "La Vache qui rit", category: "Produits Laitiers", emoji: "🧀" },
+        { id: "118", name_fr: "Beurre doux", name_ar: "زبدة", brand: "BST", category: "Produits Laitiers", emoji: "🧈" },
+        { id: "119", name_fr: "Beurre doux", name_ar: "زبدة", brand: "Président", category: "Produits Laitiers", emoji: "🧈" },
+        { id: "120", name_fr: "Margarine", name_ar: "مارغرين", brand: "Rama", category: "Produits Laitiers", emoji: "🧈" },
+        { id: "121", name_fr: "Crème fraîche liquide", name_ar: "كريم طازج", brand: "Président", category: "Produits Laitiers", emoji: "🥛" },
+        { id: "122", name_fr: "Œufs (x6)", name_ar: "بيض (6)", brand: "Origine Tunisie", category: "Frais", emoji: "🥚" },
+        { id: "123", name_fr: "Œufs (x12)", name_ar: "بيض (12)", brand: "Origine Tunisie", category: "Frais", emoji: "🥚" },
+        // Viandes et poissons
+        { id: "124", name_fr: "Blanc de poulet", name_ar: "صدر دجاج", brand: "Boucherie", category: "Viandes & Poissons", emoji: "🍗" },
+        { id: "125", name_fr: "Escalope de dinde", name_ar: "اسكالوب دند", brand: "Boucherie", category: "Viandes & Poissons", emoji: "🦃" },
+        { id: "126", name_fr: "Steak haché", name_ar: "ستيك مفروم", brand: "Boucherie", category: "Viandes & Poissons", emoji: "🥩" },
+        { id: "127", name_fr: "Viande hachée", name_ar: "لحم مفروم", brand: "Boucherie", category: "Viandes & Poissons", emoji: "🥩" },
+        { id: "128", name_fr: "Merguez", name_ar: "مرقاز", brand: "Boucherie", category: "Viandes & Poissons", emoji: "🌭" },
+        { id: "129", name_fr: "Crevettes", name_ar: "قمرون", brand: "Poissonnerie", category: "Viandes & Poissons", emoji: "🦐" },
+        { id: "130", name_fr: "Calamars", name_ar: "سبيط", brand: "Poissonnerie", category: "Viandes & Poissons", emoji: "🦑" },
+        { id: "131", name_fr: "Poisson frais", name_ar: "حوت طري", brand: "Poissonnerie", category: "Viandes & Poissons", emoji: "🐟" },
+        // Hygiène et maison
+        { id: "132", name_fr: "Shampooing", name_ar: "شمبوان", brand: "Dop", category: "Hygiène & Beauté", emoji: "🧴" },
+        { id: "133", name_fr: "Gel douche", name_ar: "جل دوش", brand: "Dop", category: "Hygiène & Beauté", emoji: "🧼" },
+        { id: "134", name_fr: "Savon de Marseille", name_ar: "صابون مرسيليا", brand: "Le Chat", category: "Hygiène & Beauté", emoji: "🧼" },
+        { id: "135", name_fr: "Dentifrice", name_ar: "معجون أسنان", brand: "Signal", category: "Hygiène & Beauté", emoji: "🪥" },
+        { id: "136", name_fr: "Brosse à dents", name_ar: "فرشاة أسنان", brand: "Signal", category: "Hygiène & Beauté", emoji: "🪥" },
+        { id: "137", name_fr: "Papier toilette", name_ar: "ورق صحي", brand: "Lilas", category: "Maison & Entretien", emoji: "🧻" },
+        { id: "138", name_fr: "Essuie-tout", name_ar: "مناشف ورق", brand: "Lilas", category: "Maison & Entretien", emoji: "🧻" },
+        { id: "139", name_fr: "Lessive liquide", name_ar: "صابون سائل", brand: "Skip", category: "Maison & Entretien", emoji: "🧴" },
+        { id: "140", name_fr: "Lessive poudre", name_ar: "صابون مسحوق", brand: "Omo", category: "Maison & Entretien", emoji: "🧼" },
+        { id: "141", name_fr: "Liquide vaisselle", name_ar: "صابون صحون", brand: "Lilas", category: "Maison & Entretien", emoji: "🍽️" },
+        { id: "142", name_fr: "Javel", name_ar: "جافيل", brand: "Lilas", category: "Maison & Entretien", emoji: "🧪" },
+    ];
+
+    // ---------- ÉTAT ----------
+    let senderPhone = localStorage.getItem('senderPhone') || '';
+    let receiverPhone = localStorage.getItem('receiverPhone') || '';
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let simpleList = JSON.parse(localStorage.getItem('simpleList')) || [];
+
+    // Filtres
+    let currentSearchTerm = '';
+    let currentCategory = '';
+    const categories = [...new Set(PRODUCT_CATALOG.map(p => p.category))].sort();
+
+    // ---------- DOM ----------
+    const senderInput = document.getElementById('senderPhone');
+    const receiverInput = document.getElementById('receiverPhone');
+    const phonesStatus = document.getElementById('phonesStatus');
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+    const cartCountSpan = document.getElementById('cartCount');
+    const categorySelect = document.getElementById('categorySelect');
+    const searchInput = document.getElementById('searchProduct');
+    const searchBtn = document.getElementById('searchBtn');
+    const productListDiv = document.getElementById('productList');
+    const cartItemsList = document.getElementById('cartItemsList');
+    const cartSummaryDiv = document.getElementById('cartSummary');
+    const clearCartBtn = document.getElementById('clearCartBtn');
+    const sendCartBtn = document.getElementById('sendCartWhatsAppBtn');
+    const simpleItemInput = document.getElementById('simpleItemInput');
+    const simpleAddBtn = document.getElementById('simpleAddBtn');
+    const simpleListUl = document.getElementById('simpleShoppingList');
+    const sendSimpleBtn = document.getElementById('sendSimpleWhatsAppBtn');
+
+    // ---------- UTILITAIRES ----------
+    function updateCartCount() {
+        const total = cart.reduce((sum, i) => sum + i.quantity, 0);
+        cartCountSpan.textContent = total;
+    }
+
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+    }
+
+    function saveSimpleList() {
+        localStorage.setItem('simpleList', JSON.stringify(simpleList));
+    }
+
+    function updatePhonesDisplay() {
+        if (senderPhone) senderInput.value = senderPhone;
+        if (receiverPhone) receiverInput.value = receiverPhone;
+        phonesStatus.textContent = (receiverPhone ? '✅ Destinataire enregistré' : '⚠️ Veuillez entrer le numéro du destinataire');
+    }
+
+    function populateCategorySelect() {
+        categorySelect.innerHTML = '<option value="">Toutes catégories</option>';
+        categories.forEach(cat => {
+            const opt = document.createElement('option');
+            opt.value = cat;
+            opt.textContent = cat;
+            categorySelect.appendChild(opt);
+        });
+    }
+
+    // Recherche bilingue (français + arabe)
+    function matchesSearch(product, term) {
+        const lower = term.toLowerCase();
+        return product.name_fr.toLowerCase().includes(lower) ||
+               product.name_ar.includes(term) || // l'arabe tel quel
+               (product.brand && product.brand.toLowerCase().includes(lower));
+    }
+
+    // ---------- RENDU CATALOGUE ----------
+    function renderProductList() {
+        let filtered = PRODUCT_CATALOG;
+        if (currentCategory) filtered = filtered.filter(p => p.category === currentCategory);
+        if (currentSearchTerm) filtered = filtered.filter(p => matchesSearch(p, currentSearchTerm));
+
+        let html = '';
+        filtered.forEach(p => {
+            html += `<div class="product-card">
+                <div class="product-img">${p.emoji || '📦'}</div>
+                <div class="product-info">
+                    <div class="product-name-fr">${p.name_fr}</div>
+                    <div class="product-name-ar">${p.name_ar}</div>
+                    <div class="product-brand">${p.brand || ''}</div>
+                </div>
+                <div class="product-actions">
+                    <input type="number" id="qty-${p.id}" class="qty-input" min="1" value="1">
+                    <button class="add-btn btn btn-small" style="width:auto; padding:8px 12px;" data-id="${p.id}" data-name-fr="${p.name_fr}" data-name-ar="${p.name_ar}" data-brand="${p.brand || ''}" data-emoji="${p.emoji || '📦'}">➕</button>
+                </div>
+            </div>`;
+        });
+        productListDiv.innerHTML = html || '<div style="text-align:center; color:#8A9B8A; padding:20px;">🔍 Aucun produit trouvé</div>';
+
+        document.querySelectorAll('.add-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.dataset.id;
+                const name_fr = btn.dataset.nameFr;
+                const name_ar = btn.dataset.nameAr;
+                const brand = btn.dataset.brand;
+                const emoji = btn.dataset.emoji;
+                const qtyInput = document.getElementById(`qty-${id}`);
+                const qty = parseInt(qtyInput.value, 10) || 1;
+                if (qty < 1) return;
+
+                const existing = cart.find(i => i.id === id);
+                if (existing) existing.quantity += qty;
+                else cart.push({ id, name_fr, name_ar, brand, emoji, quantity: qty });
+                saveCart();
+                renderCart();
+                alert(`✅ ${name_fr} (${name_ar}) ajouté`);
+                qtyInput.value = 1;
+            });
+        });
+    }
+
+    // ---------- PANIER ----------
+    function renderCart() {
+        if (cart.length === 0) {
+            cartItemsList.innerHTML = '<li style="text-align:center; list-style:none; color:#8A9B8A; padding:15px;">🛒 Panier vide</li>';
+            cartSummaryDiv.innerHTML = '';
+            return;
+        }
+        let itemsHtml = '';
+        let totalItems = 0;
+        cart.forEach((item, idx) => {
+            totalItems += item.quantity;
+            itemsHtml += `<li class="cart-item">
+                <div class="cart-item-info">
+                    <div class="cart-item-name-fr">${item.emoji || '📦'} ${item.name_fr}</div>
+                    <div class="cart-item-name-ar">${item.name_ar}</div>
+                    <div class="cart-item-details">${item.brand ? item.brand + ' · ' : ''}Quantité: ${item.quantity}</div>
+                </div>
+                <button class="delete-item" data-index="${idx}" style="background:none; border:none; color:#8A9B8A; font-size:1.4rem;">✕</button>
+            </li>`;
+        });
+        cartItemsList.innerHTML = itemsHtml;
+        cartSummaryDiv.innerHTML = `<span>Total articles</span><span>${totalItems}</span>`;
+
+        document.querySelectorAll('.delete-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = e.target.dataset.index;
+                if (idx !== undefined) {
+                    cart.splice(idx, 1);
+                    saveCart();
+                    renderCart();
+                }
+            });
+        });
+    }
+
+    function clearCart() {
+        if (!cart.length) return;
+        if (confirm('Vider le panier ?')) {
+            cart = [];
+            saveCart();
+            renderCart();
+        }
+    }
+
+    function sendCartWhatsApp() {
+        if (!receiverPhone) return alert('Veuillez enregistrer le numéro du destinataire (Récepteur).');
+        if (!cart.length) return alert('Le panier est vide.');
+        let msg = `🛒 *Panier courses*\n\n`;
+        cart.forEach((i, idx) => msg += `${idx+1}. ${i.emoji || '📦'} ${i.name_fr} (${i.name_ar}) - ${i.brand ? i.brand + ' · ' : ''}x${i.quantity}\n`);
+        const url = `https://wa.me/${receiverPhone}?text=${encodeURIComponent(msg)}`;
+        window.open(url, '_blank');
+    }
+
+    // ---------- LISTE SIMPLE ----------
+    function renderSimpleList() {
+        if (!simpleList.length) {
+            simpleListUl.innerHTML = '<li style="text-align:center; list-style:none; color:#8A9B8A;">📝 Liste vide</li>';
+            return;
+        }
+        let html = '';
+        simpleList.forEach((item, idx) => {
+            html += `<li style="display:flex; justify-content:space-between; align-items:center;"><span>${item}</span><button class="delete-simple" data-index="${idx}" style="background:none; border:none; color:#8A9B8A; font-size:1.3rem;">✕</button></li>`;
+        });
+        simpleListUl.innerHTML = html;
+        document.querySelectorAll('.delete-simple').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                simpleList.splice(e.target.dataset.index, 1);
+                saveSimpleList();
+                renderSimpleList();
+            });
+        });
+    }
+
+    function addSimpleItem() {
+        const v = simpleItemInput.value.trim();
+        if (!v) return;
+        simpleList.push(v);
+        saveSimpleList();
+        renderSimpleList();
+        simpleItemInput.value = '';
+    }
+
+    function sendSimpleWhatsApp() {
+        if (!receiverPhone) return alert('Veuillez enregistrer le numéro du destinataire (Récepteur).');
+        if (!simpleList.length) return alert('Liste vide');
+        let msg = `📝 Liste simple :\n`;
+        simpleList.forEach((i, idx) => msg += `${idx+1}. ${i}\n`);
+        window.open(`https://wa.me/${receiverPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // ---------- INIT ----------
+    function init() {
+        updatePhonesDisplay();
+        populateCategorySelect();
+        renderProductList();
+        renderCart();
+        renderSimpleList();
+        updateCartCount();
+
+        document.getElementById('savePhonesBtn').addEventListener('click', () => {
+            let s = senderInput.value.trim().replace(/\D/g, '');
+            let r = receiverInput.value.trim().replace(/\D/g, '');
+            if (!r) return alert('Le numéro du destinataire est obligatoire.');
+            senderPhone = s;
+            receiverPhone = r;
+            localStorage.setItem('senderPhone', senderPhone);
+            localStorage.setItem('receiverPhone', receiverPhone);
+            updatePhonesDisplay();
+        });
+
+        tabs.forEach(t => t.addEventListener('click', () => {
+            const id = t.dataset.tab;
+            tabs.forEach(btn => btn.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            t.classList.add('active');
+            document.getElementById(id).classList.add('active');
+            if (id === 'cart') renderCart();
+            if (id === 'simple') renderSimpleList();
+        }));
+
+        categorySelect.addEventListener('change', () => {
+            currentCategory = categorySelect.value;
+            renderProductList();
+        });
+        searchBtn.addEventListener('click', () => {
+            currentSearchTerm = searchInput.value;
+            renderProductList();
+        });
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                currentSearchTerm = searchInput.value;
+                renderProductList();
+            }
+        });
+
+        clearCartBtn.addEventListener('click', clearCart);
+        sendCartBtn.addEventListener('click', sendCartWhatsApp);
+        simpleAddBtn.addEventListener('click', addSimpleItem);
+        simpleItemInput.addEventListener('keypress', e => { if(e.key==='Enter') addSimpleItem(); });
+        sendSimpleBtn.addEventListener('click', sendSimpleWhatsApp);
+    }
+
+    init();
+})();
+</script>
+</body>
+</html>
